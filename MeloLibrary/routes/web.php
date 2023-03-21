@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('/Search', function () {
     return view('search');
 });
+
+Route::get('/Biblio', function () {
+    return view('biblio');
+});
+
+Route::get('/Likes', function () {
+    return view('likes');
+});
