@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @include('inc.sidebar')
     <div class="p-4 lg:ml-64 mt-20">
             <form>
                 <div class="flex">

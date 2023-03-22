@@ -12,17 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/Search', function () {
     return view('search');
-});
+})->middleware('auth');;
 
 Route::get('/Biblio', function () {
     return view('biblio');
-});
+})->middleware('auth');;
 
 Route::get('/Likes', function () {
     return view('likes');
-});
+})->middleware('auth');;

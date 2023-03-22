@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @include('inc.sidebar')
     <div class="p-4 sm:ml-64 mt-20">
         <p class="font-bold text-xl px-4">Your Likes</p>
         <div class="flex flex-wrap my-10 px-10 w-full justify-around">   
