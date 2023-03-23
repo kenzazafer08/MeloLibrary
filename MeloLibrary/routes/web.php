@@ -35,5 +35,25 @@ Route::get('/Likes', function () {
 })->middleware('auth');
 
 Route::get('/Admin', function () {
-    return view('admin');
+    return view('Admin.admin');
+})->middleware('admin');
+
+Route::get('/artist', function () {
+    return view('Admin.artist');
+})->middleware('admin');
+
+Route::get('/song', function () {
+    return view('Admin.song');
+})->middleware('admin');
+
+Route::get('/cat', function () {
+    return view('Admin.cat');
+})->middleware('admin');
+
+Route::get('/user', function () {
+    return view('Admin.user');
+})->middleware('admin');
+
+Route::get('/band', function () {
+    return view('Admin.band');
 })->middleware('admin');
