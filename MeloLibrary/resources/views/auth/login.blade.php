@@ -1,5 +1,4 @@
 @extends('layouts.Melo')
-
 @section('head')
 <div class="bg-black flex justify-center items-center w-full h-screen ">
     <div class="w-1/3 h-2/3 bg-white shadow-sm shadow-red-800 rounded-lg border border-red-800">
