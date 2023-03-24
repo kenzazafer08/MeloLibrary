@@ -1,5 +1,4 @@
 @extends('layouts.dashboard')
-
 @section('content')
 <div class="p-4 sm:ml-64 mt-20">
     <div class="grid grid-cols-4 grid-flow-col gap-4"> 

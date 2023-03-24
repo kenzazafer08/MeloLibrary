@@ -39,12 +39,12 @@ class artistcontroller extends Controller
     public function store(Request $request)
     {
         $file = $request->file('image');
-        $file = $file->move('',$file->getClientOriginalName());
+        $file->move(public_path('uploads'),$file->getClientOriginalName());
         $artist = artist::create([
         'name'       => $request->input('name'),
         'country'   => $request->input('country'),
         'birthday'   => $request->input('birthdate'),
-        'image'       => $file,
+        'image'       => $file->getClientOriginalName(),
         ]);
         return redirect('/artist/')->with('success', 'Artist has been created successfully!');
     
@@ -90,8 +90,11 @@ class artistcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $artist=artist::find($id);
+        $artist->delete();
+        return redirect('/artist/')->with('success', 'Artist has been deleted successfully!');
     }
 }
