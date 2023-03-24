@@ -34,13 +34,14 @@ Route::get('/Likes', function () {
     return view('likes');
 })->middleware('auth');
 
-Route::get('/Admin', function () {
-    return view('Admin.admin');
-})->middleware('admin');
+Route::get('/Admin', 'admincontoller@index')->middleware('admin');
 
-Route::get('/artist', function () {
-    return view('Admin.artist');
-})->middleware('admin');
+Route::prefix('/artist')->middleware('admin')->group(function (){
+    Route::get('/', 'artistcontroller@index');
+    Route::get('/create', 'artistcontroller@create');
+    Route::post('/insert', 'artistcontroller@store');
+});
+
 
 Route::get('/song', function () {
     return view('Admin.song');
