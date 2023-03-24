@@ -50,9 +50,7 @@ Route::get('/cat', function () {
     return view('Admin.cat');
 })->middleware('admin');
 
-Route::get('/user', function () {
-    return view('Admin.user');
-})->middleware('admin');
+Route::get('/user', 'usercontroller@index')->middleware('admin');
 
 Route::get('/band', function () {
     return view('Admin.band');
