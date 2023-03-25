@@ -34,12 +34,12 @@ Route::get('/Likes', function () {
     return view('likes');
 })->middleware('auth');
 
-Route::get('/Admin', 'admincontoller@index')->middleware('admin');
+Route::get('/Admin', [App\Http\Controllers\admincontoller::class, 'index'])->middleware('admin');
 
 Route::prefix('/artist')->middleware('admin')->group(function (){
-    Route::get('/', 'artistcontroller@index');
-    Route::get('/create', 'artistcontroller@create');
-    Route::post('/insert', 'artistcontroller@store');
+    Route::get('/', [App\Http\Controllers\artistcontroller::class, 'index']);
+    Route::get('/create', [App\Http\Controllers\artistcontroller::class, 'create']);
+    Route::post('/insert', [App\Http\Controllers\artistcontroller::class, 'store']);
 });
 
 
@@ -51,8 +51,12 @@ Route::get('/cat', function () {
     return view('Admin.cat');
 })->middleware('admin');
 
-Route::get('/user', 'usercontroller@index')->middleware('admin');
+Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->middleware('admin');
 
 Route::get('/band', function () {
     return view('Admin.band');
 })->middleware('admin');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('reauth');
