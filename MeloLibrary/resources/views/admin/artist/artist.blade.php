@@ -6,9 +6,9 @@
     <a href="{{ url('/artist/create')}}" class="focus:outline-none text-red-800 bg-white hover:bg-red-800 hover:text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  border border-red-700">Add New Song</a>
 </div>
         @if(session('success'))
-            <div class="p-4 w-[40%] text-green-600 font-bold bg-green-100 rounded-lg">
-                {{ session('success') }}
-            </div> 
+        <span class="w-full flex justify-center"><div class="p-4 w-[40%] text-green-600 font-bold bg-green-100 rounded-lg">
+            {{ session('success') }}
+        </div> </span>
         @endif
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

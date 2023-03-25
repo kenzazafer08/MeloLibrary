@@ -45,14 +45,19 @@ Route::prefix('/artist')->middleware('admin')->group(function (){
     Route::put('/{id}', [App\Http\Controllers\artistcontroller::class, 'update'])->name('artist.update');
 });
 
+Route::prefix('/cat')->middleware('admin')->group(function (){
+    Route::get('/', [App\Http\Controllers\catcontroller::class, 'index']);
+    Route::get('/create', [App\Http\Controllers\catcontroller::class, 'create']);
+    Route::post('/insert', [App\Http\Controllers\catcontroller::class, 'store']);
+    Route::get('/{id}/edit', [App\Http\Controllers\catcontroller::class, 'edit'])->name('cat.edit');
+    Route::delete('/{id}', [App\Http\Controllers\catcontroller::class, 'destroy'])->name('cat.destroy');
+    Route::put('/{id}', [App\Http\Controllers\catcontroller::class, 'update'])->name('cat.update');
+});
 
 Route::get('/song', function () {
     return view('Admin.song');
 })->middleware('admin');
 
-Route::get('/cat', function () {
-    return view('Admin.cat');
-})->middleware('admin');
 
 Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->middleware('admin');
 
