@@ -61,9 +61,10 @@ Route::get('/song', function () {
 
 Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->middleware('admin');
 
-Route::get('/band', function () {
-    return view('Admin.band');
-})->middleware('admin');
+Route::prefix('/band')->middleware('admin')->group(function (){
+    Route::get('/', [App\Http\Controllers\bandcontroller::class, 'index']);
+    Route::get('/create', [App\Http\Controllers\bandcontroller::class, 'create']);
+});
 
 Auth::routes();
 
