@@ -40,6 +40,9 @@ Route::prefix('/artist')->middleware('admin')->group(function (){
     Route::get('/', [App\Http\Controllers\artistcontroller::class, 'index']);
     Route::get('/create', [App\Http\Controllers\artistcontroller::class, 'create']);
     Route::post('/insert', [App\Http\Controllers\artistcontroller::class, 'store']);
+    Route::get('/{id}/edit', [App\Http\Controllers\artistcontroller::class, 'edit'])->name('artist.edit');
+    Route::delete('/{id}', [App\Http\Controllers\artistcontroller::class, 'destroy'])->name('artist.destroy');
+    Route::put('/{id}', [App\Http\Controllers\artistcontroller::class, 'update'])->name('artist.update');
 });
 
 

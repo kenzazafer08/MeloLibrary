@@ -2,7 +2,8 @@
 @section('content')
 <div class="p-4 sm:ml-64 mt-20">
 <form enctype="multipart/form-data" method="POST" action="{{ url('/artist/insert/') }}">
-    {{ csrf_field() }}
+  @csrf
+  @method('POST')
     <div class="mb-6">
       <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
       <input type="text" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500 dark:shadow-sm-light" placeholder="artist name" required>

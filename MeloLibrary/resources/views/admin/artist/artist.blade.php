@@ -47,8 +47,12 @@
                             {{ $artist->birthday }}
                         </td>
                         <td class=" px-6 py-4 text-red-800">
-                            <a>Edit</a>
-                            <a class="pl-8">Delete</a>
+                                <a href="{{ route('artist.edit', $artist->id) }}">Edit</a>
+                                <form class="px-4" action="{{ route('artist.destroy', $artist->id) }}" method="POST" style="display: inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-800">Delete</button>
+                                </form>
                         </td>
                     </tr>
                     @endforeach

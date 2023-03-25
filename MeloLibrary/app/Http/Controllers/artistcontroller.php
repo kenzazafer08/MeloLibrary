@@ -69,8 +69,18 @@ class artistcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $country = country::all();
+        $artist = artist::find($id);
+        return view('admin.artist.edit', compact('artist','country'));
     }
+
+    public function destroy($id)
+    {
+        $artist = artist::find($id);
+        $artist->delete();
+        return redirect('/artist')->with('success', 'Artist deleted successfully.');
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -81,20 +91,22 @@ class artistcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    $artist = artist::find($id);
+
+    $artist->name = $request->input('name');
+    $artist->country = $request->input('country');
+    $artist->birthday = $request->input('birthdate');
+
+    // Check if a new image was uploaded
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $file->move(public_path('uploads'), $file->getClientOriginalName());
+        $artist->image = $file->getClientOriginalName();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $id = $request->input('id');
-        $artist=artist::find($id);
-        $artist->delete();
-        return redirect('/artist/')->with('success', 'Artist has been deleted successfully!');
+    $artist->save();
+
+    return redirect('/artist')->with('success', 'Artist updated successfully.');
     }
+
 }
