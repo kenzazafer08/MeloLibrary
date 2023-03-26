@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class band_members extends Model
+class members extends Model
 {
+    protected $table = 'band_members';
     use HasFactory;
-    protected $fillable = ['band_id', 'artist_id', 'role'];
+    protected $fillable = ['band_id', 'artist_id'];
+
 
     public function band()
     {

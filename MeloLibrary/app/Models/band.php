@@ -11,8 +11,8 @@ class band extends Model
     protected $table = 'band'; 
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'image'];
-    public function bandMembers()
+    public function members()
     {
-        return $this->hasMany(band_members::class);
+        return $this->belongsToMany(members::class);
     }
 }

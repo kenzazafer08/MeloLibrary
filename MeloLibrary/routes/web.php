@@ -64,6 +64,13 @@ Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->midd
 Route::prefix('/band')->middleware('admin')->group(function (){
     Route::get('/', [App\Http\Controllers\bandcontroller::class, 'index']);
     Route::get('/create', [App\Http\Controllers\bandcontroller::class, 'create']);
+    Route::post('/insert', [App\Http\Controllers\bandcontroller::class, 'store']);
+    Route::get('{id}/add', [App\Http\Controllers\bandcontroller::class, 'add'])->name('band.add');;
+    Route::get('/{id}/edit', [App\Http\Controllers\bandcontroller::class, 'edit'])->name('band.edit');
+    Route::get('/{id}/show', [App\Http\Controllers\bandcontroller::class, 'show'])->name('band.show');
+    Route::delete('/{id}', [App\Http\Controllers\bandcontroller::class, 'destroy'])->name('band.destroy');
+    Route::put('/{id}', [App\Http\Controllers\bandcontroller::class, 'update'])->name('band.update');
+    Route::post('/{id}', [App\Http\Controllers\bandcontroller::class, 'remove'])->name('band.remove');
 });
 
 Auth::routes();
