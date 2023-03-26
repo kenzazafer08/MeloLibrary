@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\artist;
 use App\Models\band;
 use App\Models\categorie;
+use App\Models\song;
 use Illuminate\Http\Request;
 use App\Models\User;
 class admincontoller extends Controller
@@ -15,6 +16,7 @@ class admincontoller extends Controller
         $artists = artist::count();
         $categorie = categorie::count();
         $band = band::count();
-        return view('admin.admin', compact('users','artists','categorie','band'));
+        $song = song::count();
+        return view('admin.admin', compact('users','artists','categorie','band','song'));
     }
 }

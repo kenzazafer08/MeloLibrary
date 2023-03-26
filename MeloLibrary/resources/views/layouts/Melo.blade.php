@@ -20,8 +20,14 @@
     @yield('head')
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script>
-      new TomSelect('#select-role', {
-        maxItems: 3,
+      new TomSelect('#select-artist', {
+        maxItems: 10,
+      });
+      new TomSelect('#select-band', {
+        maxItems: 10,
+      });
+      new TomSelect('#select-categorie', {
+        maxItems: 10,
       });
     </script>
 </body>

@@ -16,7 +16,7 @@
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Artists</label>
         <div class="flex w-full mb-2 text-sm font-medium text-gray-900 dark:text-white">
             <select
-              id="select-role"
+              id="select-artist"
               name="artist[]"
               multiple
               placeholder="Select Artists..."

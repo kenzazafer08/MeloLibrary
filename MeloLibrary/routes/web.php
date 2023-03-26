@@ -54,10 +54,21 @@ Route::prefix('/cat')->middleware('admin')->group(function (){
     Route::put('/{id}', [App\Http\Controllers\catcontroller::class, 'update'])->name('cat.update');
 });
 
-Route::get('/song', function () {
-    return view('Admin.song');
-})->middleware('admin');
-
+Route::prefix('/song')->middleware('admin')->group(function (){
+    Route::get('/', [App\Http\Controllers\songcontroller::class, 'index']);
+    Route::get('/create', [App\Http\Controllers\songcontroller::class, 'create']);
+    Route::post('/insert', [App\Http\Controllers\songcontroller::class, 'store']);
+    Route::get('/{id}/show', [App\Http\Controllers\songcontroller::class, 'show'])->name('song.show');
+    Route::get('/{id}/edit', [App\Http\Controllers\songcontroller::class, 'edit'])->name('song.edit');
+    Route::put('/{id}', [App\Http\Controllers\songcontroller::class, 'update'])->name('song.update');
+    Route::delete('/{id}', [App\Http\Controllers\songcontroller::class, 'destroy'])->name('song.destroy');
+    Route::post('/{id}/removeartist/', [App\Http\Controllers\songcontroller::class, 'remove_artist'])->name('song.removeartist');
+    Route::post('/{id}/removeband/', [App\Http\Controllers\songcontroller::class, 'remove_band'])->name('song.removeband');
+    Route::post('/{id}/removecat/', [App\Http\Controllers\songcontroller::class, 'remove_cat'])->name('song.removecat');
+    Route::get('/{id}/addartist/', [App\Http\Controllers\songcontroller::class, 'addartist'])->name('song.addartist');
+    Route::get('/{id}/addband/', [App\Http\Controllers\songcontroller::class, 'addband'])->name('song.addband');
+    Route::get('/{id}/addcat/', [App\Http\Controllers\songcontroller::class, 'addcat'])->name('song.addcat');
+});
 
 Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->middleware('admin');
 

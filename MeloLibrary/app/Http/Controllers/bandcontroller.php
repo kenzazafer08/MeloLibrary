@@ -56,7 +56,7 @@ class bandcontroller extends Controller
                 'artist_id' => $artist,
         ]);
         }
-        return redirect('/band/')->with('success', 'Band has been updated successfully!');
+        return redirect(route('band.show',$id))->with('success', 'Band has been updated successfully!');
     }
     /**
      * Display the specified resource.
@@ -117,7 +117,7 @@ class bandcontroller extends Controller
             $band = band::findOrFail($id);
             $id_artist = $request->input('artist');
             $members = members::where('band_id', $band->id)->where('artist_id', $id_artist)->delete();
-            return redirect('/band/')->with('success', 'Band has been updated successfully!');
+            return redirect(route('band.show',$id))->with('success', 'Band has been updated successfully!');
         }
         
 }

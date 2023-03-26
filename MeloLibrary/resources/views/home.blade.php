@@ -115,16 +115,4 @@
 
     </div>
 </div>
-<script>
-  function playA(id){
-    console.log('test')
-    const playButtons = document.querySelectorAll('.fill-current');
-          const audio = document.getElementById(id);
-          if (audio.paused) {
-            audio.play();
-          } else {
-            audio.pause();
-          }
-        }
-</script>
 @endsection
