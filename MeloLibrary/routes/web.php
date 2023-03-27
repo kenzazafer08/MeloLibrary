@@ -30,13 +30,12 @@ Route::get('/detailband/{id}',[App\Http\Controllers\bandcontroller::class, 'show
 Route::get('/songsband/{id}',[App\Http\Controllers\bandcontroller::class, 'showsongs'])->name('show.bandsongs')->middleware('auth');
 Route::get('/songLike/{id}',[App\Http\Controllers\likescontroller::class, 'store'])->name('like.song')->middleware('auth');
 
-Route::get('/Biblio', function () {
-    return view('biblio');
-})->middleware('auth');
-
-Route::get('/Likes', [App\Http\Controllers\likescontroller::class, 'index'])->middleware('auth');
+Route::get('/Biblio', [App\Http\Controllers\playlistcontroller::class, 'index'])->middleware('auth');
+Route::get('/songBiblio/{id}',[App\Http\Controllers\playlistcontroller::class, 'store'])->name('playlist.song')->middleware('auth');
+Route::delete('/{id}',[App\Http\Controllers\playlistcontroller::class, 'remove'])->name('playlist.remove')->middleware('auth');
 
 Route::get('/Admin', [App\Http\Controllers\admincontoller::class, 'index'])->middleware('admin');
+Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->middleware('admin');
 
 Route::prefix('/artist')->middleware('admin')->group(function (){
     Route::get('/', [App\Http\Controllers\artistcontroller::class, 'index']);
@@ -71,8 +70,6 @@ Route::prefix('/song')->middleware('admin')->group(function (){
     Route::get('/{id}/addband/', [App\Http\Controllers\songcontroller::class, 'addband'])->name('song.addband');
     Route::get('/{id}/addcat/', [App\Http\Controllers\songcontroller::class, 'addcat'])->name('song.addcat');
 });
-
-Route::get('/user', [App\Http\Controllers\usercontroller::class, 'index'])->middleware('admin');
 
 Route::prefix('/band')->middleware('admin')->group(function (){
     Route::get('/', [App\Http\Controllers\bandcontroller::class, 'index']);

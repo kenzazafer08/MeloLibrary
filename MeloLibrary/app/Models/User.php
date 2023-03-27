@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(likes::class);
     }
+    public function playlist()
+    {
+        return $this->hasMany(playlist::class);
+    }
 }

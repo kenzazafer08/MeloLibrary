@@ -28,4 +28,8 @@ class song extends Model
     {
         return $this->hasMany(likes::class);
     }
+    public function playlists()
+    {
+        return $this->hasMany(playlists::class);
+    }
 }

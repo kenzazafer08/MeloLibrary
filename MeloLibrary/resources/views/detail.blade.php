@@ -9,9 +9,9 @@
     <h5 class="py-4 font-bold text-red-700 text-lg text-center">{{$song->Titre}}</h5>
     <div class="flex justify-around items-center">
         <button onclick="playA({{$song->id}})" class="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" class="fill-current text-red-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" class="fill-current">
               <path fill="none" d="M0 0h48v48H0z"></path>
-              <path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29V15l12 9-12 9z"></path>
+              <path width="40" height="40" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29V15l12 9-12 9z" fill="red"></path>
             </svg>
             <audio class="hidden" id="{{$song->id}}" src="{{ asset('uploads') }}/{{$song->audio}}"></audio>
         </button>
@@ -31,6 +31,18 @@
                 </g>
             </svg>
         </a>{{$count_like}}
+        @endif
+        @if($playlist == 1)
+        <a href="{{route('playlist.song',$song->id)}}">
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="red" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13 9C13 8.44772 12.5523 8 12 8C11.4477 8 11 8.44772 11 9V11H9C8.44772 11 8 11.4477 8 12C8 12.5523 8.44772 13 9 13H11V15C11 15.5523 11.4477 16 12 16C12.5523 16 13 15.5523 13 15V13H15C15.5523 13 16 12.5523 16 12C16 11.4477 15.5523 11 15 11H13V9ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z" fill="red"/>
+            </svg></a>
+        @else
+        <a href="{{route('playlist.song',$song->id)}}">
+            <svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path fill="red" fill-rule="evenodd" d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm14 .069a1 1 0 01-1 1h-2.931V14a1 1 0 11-2 0v-2.931H6a1 1 0 110-2h3.069V6a1 1 0 112 0v3.069H14a1 1 0 011 1z"/>
+            </svg></a>
         @endif
     </div>
     </div>
