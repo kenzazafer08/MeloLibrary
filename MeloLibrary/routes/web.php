@@ -34,9 +34,7 @@ Route::get('/Biblio', function () {
     return view('biblio');
 })->middleware('auth');
 
-Route::get('/Likes', function () {
-    return view('likes');
-})->middleware('auth');
+Route::get('/Likes', [App\Http\Controllers\likescontroller::class, 'index'])->middleware('auth');
 
 Route::get('/Admin', [App\Http\Controllers\admincontoller::class, 'index'])->middleware('admin');
 
