@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Models\song_singers;
 use Illuminate\Database\Eloquent\Model;
@@ -13,10 +13,10 @@ class artist extends Model
     use SoftDeletes;
     public function members()
     {
-        return $this->belongsToMany(members::class);
+        return $this->belongsToMany(band::class);
     }
     public function song()
     {
-        return $this->belongsToMany(song_singers::class);
+        return $this->belongsToMany(song::class);
     }
 }

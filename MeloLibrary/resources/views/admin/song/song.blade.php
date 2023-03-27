@@ -3,7 +3,7 @@
 @section('content')
 <div class="p-4 sm:ml-64 mt-20">
 <div class="flex justify-end w-full"> 
-    <a href="{{url('/song/create')}}" class="focus:outline-none text-red-800 bg-white hover:bg-red-800 hover:text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  border border-red-700">Add New Song</a>
+    <a href="{{route('song.create')}}" class="focus:outline-none text-red-800 bg-white hover:bg-red-800 hover:text-white focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  border border-red-700">Add New Song</a>
 </div>
         @if(session('success'))
         <span class="w-full flex justify-center"><div class="p-4 w-[40%] text-green-600 font-bold bg-green-100 rounded-lg">

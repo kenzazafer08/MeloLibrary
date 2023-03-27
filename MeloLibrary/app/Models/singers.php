@@ -8,15 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class singers extends Model
 {
     use HasFactory;
-    protected $table = 'singers_song'; 
-    protected $fillable = ['id_artist', 'song_id'];
-    public function song()
-    {
-        return $this->belongsToMany(song::class);
-    }
-
-    public function artist()
-    {
-        return $this->belongsToMany(artist::class);
-    }
+    protected $table = 'artist_song'; 
+    protected $fillable = ['artist_id', 'song_id'];
+    
 }

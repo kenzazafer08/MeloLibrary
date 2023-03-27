@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\artist;
+
+use App\Models\artist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,15 +15,15 @@ class song extends Model
     protected $fillable = ['Titre', 'image','audio','lyrics','date'];
     public function categories()
     {
-        return $this->belongsToMany(categories::class);
+        return $this->belongsToMany(categorie::class);
     }
     public function singers()
     {
-        return $this->belongsToMany(singers::class);
+        return $this->belongsToMany(artist::class);
     }
-    public function bands()
+    public function band()
     {
-        return $this->belongsToMany(bands::class);
+        return $this->belongsToMany(band::class);
     }
     public function likes()
     {

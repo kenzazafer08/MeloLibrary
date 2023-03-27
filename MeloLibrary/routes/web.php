@@ -59,7 +59,7 @@ Route::prefix('/cat')->middleware('admin')->group(function (){
 
 Route::prefix('/song')->middleware('admin')->group(function (){
     Route::get('/', [App\Http\Controllers\songcontroller::class, 'index']);
-    Route::get('/create', [App\Http\Controllers\songcontroller::class, 'create']);
+    Route::get('/add', [App\Http\Controllers\songcontroller::class, 'create'])->name('song.create');
     Route::post('/insert', [App\Http\Controllers\songcontroller::class, 'store']);
     Route::get('/{id}/show', [App\Http\Controllers\songcontroller::class, 'show'])->name('song.show');
     Route::get('/{id}/edit', [App\Http\Controllers\songcontroller::class, 'edit'])->name('song.edit');

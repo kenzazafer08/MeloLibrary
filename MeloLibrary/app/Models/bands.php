@@ -8,15 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class bands extends Model
 {
     use HasFactory;
-    protected $table = 'bands_song'; 
-    protected $fillable = ['id_band', 'song_id'];
-    public function band()
-    {
-        return $this->belongsTo(band::class);
-    }
+    protected $table = 'band_song'; 
+    protected $fillable = ['band_id', 'song_id'];
 
-    public function song()
-    {
-        return $this->belongsTo(song::class);
-    }
+    
 }

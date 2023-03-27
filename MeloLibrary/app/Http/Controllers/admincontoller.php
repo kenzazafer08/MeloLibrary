@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\artist;
+use App\Models\artist;
 use App\Models\band;
 use App\Models\categorie;
 use App\Models\song;

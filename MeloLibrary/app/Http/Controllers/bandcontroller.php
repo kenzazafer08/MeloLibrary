@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\band;
-use App\artist;
+use App\Models\artist;
 use App\Models\members;
 use App\Models\bands;
 use Illuminate\Support\Facades\Auth;
@@ -71,14 +71,9 @@ class bandcontroller extends Controller
      */
     public function show(string $id)
     {
-        $artists = array();
         $band = band::find($id);
+        $artists = $band->members ;
         $singers= artist::all();
-        $members = members::where('band_id',$band->id)->get();
-        foreach($members as $member){
-            $artist = artist::find($member->artist_id);
-            array_push($artists,$artist);
-        }
         if(Auth::user()->role == '1'){
         return view('admin.band.detail', compact('band','artists','singers'));
         }else{
@@ -88,13 +83,8 @@ class bandcontroller extends Controller
 
     public function showsongs($id)
     {
-        $song = array();
-        $singers = bands::where('id_band',$id)->get();
-        foreach($singers as $member){
-            $id =  $member->song_id;
-            $artist = band::find($id);
-            array_push($song,$artist);
-        }
+        $band = band::find($id);
+        $song = $band->song;
         return view('home', compact('song'));
     }
 
@@ -131,7 +121,7 @@ class bandcontroller extends Controller
      */
     public function destroy($id)
         {
-            $band = band::findOrFail($id);
+            $band = band::find($id);
             $band->members()->detach();
             $band->delete();
             return redirect('/band/')->with('success', 'Band has been deleted successfully!');

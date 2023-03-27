@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\artist;
+use App\Models\artist;;
 use App\country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,13 +66,8 @@ class artistcontroller extends Controller
      */
     public function show($id)
     {
-        $song = array();
-        $singers = singers::where('id_artist',$id)->get();
-        foreach($singers as $member){
-            $id =  $member->song_id;
-            $artist = song::find($id);
-            array_push($song,$artist);
-        }
+        $artist = artist::find($id);
+        $song = $artist->song;
         return view('home', compact('song'));
     }
 

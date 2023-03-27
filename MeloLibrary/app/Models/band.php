@@ -13,10 +13,10 @@ class band extends Model
     protected $fillable = ['name', 'image'];
     public function members()
     {
-        return $this->belongsToMany(members::class);
+        return $this->belongsToMany(artist::class);
     }
-    public function song_bands()
+    public function song()
     {
-        return $this->belongsToMany(song_bands::class);
+        return $this->belongsToMany(song::class);
     }
 }

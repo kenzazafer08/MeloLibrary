@@ -30,16 +30,16 @@
                     @foreach ($artists as $artist)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="object-cover h-24 w-24 rounded-full" src="{{asset('uploads')}}/{{$artist->image}}"/>
+                            <img class="object-cover h-24 w-24 rounded-full" src="{{asset('uploads')}}/{{$artist->artist->image}}"/>
                         </th>
                         <td class="px-6 py-4">
-                            {{ $artist->name }}
+                            {{ $artist->artist->name }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $artist->country }}
+                            {{ $artist->artist->country }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $artist->birthday }}
+                            {{ $artist->artist->birthday }}
                         </td>
                     </tr>
                     @endforeach

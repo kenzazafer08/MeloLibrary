@@ -14,6 +14,6 @@ class categorie extends Model
     protected $fillable = ['name', 'discription','type'];
     public function song_categories()
     {
-        return $this->belongsToMany(song_categories::class);
+        return $this->belongsToMany(song::class);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\artist;
+use App\Models\artist;
 use App\Models\band;
 use App\Models\categorie;
 use App\Models\song;
@@ -55,7 +55,7 @@ class songcontroller extends Controller
             foreach($artists as $artist){
                 $songSinger = singers::create( [
                     'song_id' => $song->id,
-                    'id_artist' => $artist,
+                    'artist_id' => $artist,
             ]);
         }}
         $bands = $request->input('band');
@@ -63,7 +63,7 @@ class songcontroller extends Controller
             foreach($bands as $band){
                 $songBand = bands::create( [
                     'song_id' => $song->id,
-                    'id_band' => $band,
+                    'band_id' => $band,
             ]);
         }
       }
@@ -71,7 +71,7 @@ class songcontroller extends Controller
             foreach($categories as $categorie){
                 $songcat = categories::create( [
                     'song_id' => $song->id,
-                    'id_cat' => $categorie,
+                    'categorie_id' => $categorie,
                 ]);
         }
         return redirect('/song/')->with('success', 'Song has been created successfully!');
@@ -83,28 +83,11 @@ class songcontroller extends Controller
      */
     public function show(string $id)
     {
-        $artists = array();
-        $bands = array();
-        $categories = array();
         $song = song::find($id);
-        $singers = singers::where('song_id',$song->id)->get();
-        $band = bands::where('song_id',$song->id)->get();
-        $categorie = categories::where('song_id',$song->id)->get();
-        foreach($singers as $member){
-            $id =  $member->id_artist;
-            $artist = artist::find($id);
-            array_push($artists,$artist);
-        }
-        foreach($band as $member){
-            $id = $member->id_band;
-            $artist = band::find($id);
-            array_push($bands,$artist);
-        }
-        foreach($categorie as $member){
-            $id = $member->id_cat;
-            $artist = categorie::find($id);
-            array_push($categories,$artist);
-        }
+        $comments = $song->comments;
+        $artists = $song->singers;
+        $bands = $song->band_song;
+        $categories = $song->categories;
         $count_likes = likes::where([
             'song_id' => $id
         ])->count();
@@ -157,7 +140,7 @@ class songcontroller extends Controller
         $song = song::findOrFail($id);
             $song->categories()->detach();
             $song->singers()->detach();
-            $song->bands()->detach();
+            $song->band()->detach();
             $song->delete();
             return redirect('/song')->with('success', 'Song has been deleted successfully!');
     }
@@ -165,21 +148,21 @@ class songcontroller extends Controller
         {
             $song = song::findOrFail($id);
             $id_artist = $request->input('artist');
-            $members = singers::where('song_id', $song->id)->where('id_artist', $id_artist)->delete();
+            $members = singers::where('song_id', $song->id)->where('artist_id', $id_artist)->delete();
             return redirect(route('song.show',$id))->with('success', 'song has been updated successfully!');
         }
     public function remove_band(Request $request, string $id)
         {
             $song = song::findOrFail($id);
             $band = $request->input('band');
-            $members = bands::where('song_id', $song->id)->where('id_band', $band)->delete();
+            $members = bands::where('song_id', $song->id)->where('band_id', $band)->delete();
             return redirect('/song/')->with('success', 'song has been updated successfully!');
         }
     public function remove_cat(Request $request, string $id)
         {
             $song = song::findOrFail($id);
             $categorie = $request->input('categorie');
-            $members = categories::where('song_id', $song->id)->where('id_cat', $categorie)->delete();
+            $members = categories::where('song_id', $song->id)->where('categorie_id', $categorie)->delete();
             return redirect(route('song.show',$id))->with('success', 'song has been updated successfully!');
         }
         public function addartist(Request $request, string $id){
@@ -188,7 +171,7 @@ class songcontroller extends Controller
             foreach($artists as $artist){
                 $bandMember = singers::create( [
                     'song_id' => $song->id,
-                    'id_artist' => $artist,
+                    'artist_id' => $artist,
             ]);
             }
             return redirect(route('song.show',$id))->with('success', 'Song has been updated successfully!');
@@ -199,7 +182,7 @@ class songcontroller extends Controller
             foreach($bands as $artist){
                 $bandMember = bands::create( [
                     'song_id' => $song->id,
-                    'id_band' => $artist,
+                    'band_id' => $artist,
             ]);
             }
             return redirect(route('song.show',$id))->with('success', 'Song has been updated successfully!');
@@ -210,7 +193,7 @@ class songcontroller extends Controller
             foreach($categories as $artist){
                 $bandMember = categories::create( [
                     'song_id' => $song->id,
-                    'id_cat' => $artist,
+                    'categorie_id' => $artist,
             ]);
             }
             return redirect(route('song.show',$id))->with('success', 'Song has been updated successfully!');

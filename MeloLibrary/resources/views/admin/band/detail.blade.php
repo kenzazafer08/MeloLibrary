@@ -28,8 +28,10 @@
                 >
                 @foreach($singers as $singer)
                   @foreach ($artists as $artist)
-                  @if($singer->id != $artist->id)
-                     <option value="{{$singer->id}}">{{$singer->name}}</option> 
+                  @if($singer->id == $artist->id)
+                  <option class="hidden" value="{{$singer->id}}">{{$singer->name}}</option>
+                  @else 
+                  <option value="{{$singer->id}}">{{$singer->name}}</option>
                   @endif
                   @endforeach
                 @endforeach
