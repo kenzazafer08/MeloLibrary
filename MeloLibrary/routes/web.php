@@ -14,17 +14,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\homecontroller::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('reauth');
-
-Route::get('/Search', function () {
-    return view('search');
-})->middleware('auth');
+Route::get('/home', [App\Http\Controllers\homecontroller::class, 'index'])->name('home')->middleware('reauth');
+Route::get('/song/{id}',[App\Http\Controllers\homecontroller::class,'show'])->name('song')->middleware('auth');
+Route::get('/Search', [App\Http\Controllers\searchcontroller::class, 'index'])->middleware('auth');
+Route::get('/search', [App\Http\Controllers\searchcontroller::class, 'read'])->name('search')->middleware('auth');
+Route::get('/categorie/{id}', [App\Http\Controllers\searchcontroller::class, 'show'])->name('categorie')->middleware('auth');
 
 Route::get('/Biblio', function () {
     return view('biblio');
@@ -84,6 +82,3 @@ Route::prefix('/band')->middleware('admin')->group(function (){
     Route::post('/{id}', [App\Http\Controllers\bandcontroller::class, 'remove'])->name('band.remove');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('reauth');

@@ -30,5 +30,17 @@
         maxItems: 10,
       });
     </script>
+    <script>
+      function playA(id){
+        console.log(id)
+              const audio = document.getElementById(id);
+              console.log(audio)
+              if (audio.paused) {
+                audio.play();
+              } else {
+                audio.pause();
+              }
+            }
+    </script>
 </body>
 </html>
