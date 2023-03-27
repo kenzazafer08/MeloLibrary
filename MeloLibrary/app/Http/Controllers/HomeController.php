@@ -8,8 +8,10 @@ use App\Models\categories;
 use App\Models\bands;
 use App\Models\singers;
 use App\Models\categorie;
+use App\Models\likes;
 use App\Models\band;
 use App\artist;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,7 @@ class HomeController extends Controller
     }
     public function show(string $id)
     {
+        $id_user = Auth::user()->id;
         $artists = array();
         $bands = array();
         $categories = array();
@@ -57,6 +60,20 @@ class HomeController extends Controller
             $artist = categorie::find($id);
             array_push($categories,$artist);
         }
-        return view('detail', compact('song','artists','bands','categories'));
+        $existing_like = likes::where([
+            'song_id' => $id,
+            'user_id' => $id_user
+        ])->first();
+        $count_like = likes::where([
+            'song_id' => $id
+        ])->count();
+        if ($existing_like) {
+            // User already liked the song, so delete the like
+            $like = 1;
+        } else {
+            // User has not liked the song, so add the like
+            $like = 0;
+        }
+        return view('detail', compact('song','artists','bands','categories','like','count_like'));
     }
 }

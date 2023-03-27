@@ -9,6 +9,7 @@ use App\Models\song;
 use App\Models\bands;
 use App\Models\categories;
 use App\Models\singers;
+use App\Models\likes;
 use Illuminate\Http\Request;
 
 class songcontroller extends Controller
@@ -104,10 +105,13 @@ class songcontroller extends Controller
             $artist = categorie::find($id);
             array_push($categories,$artist);
         }
+        $count_likes = likes::where([
+            'song_id' => $id
+        ])->count();
         $singers= artist::all();
         $groups= band::all();
         $keywords= categorie::all();
-        return view('admin.song.detail', compact('song','artists','bands','categories','singers','groups','keywords'));
+        return view('admin.song.detail', compact('count_likes','song','artists','bands','categories','singers','groups','keywords'));
     }
 
     /**

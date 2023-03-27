@@ -12,11 +12,12 @@ class admincontoller extends Controller
 {
     public function index()
     {
-        $users = User::where('role', 0)->count();
+        $user = User::where('role', 0)->count();
         $artists = artist::count();
         $categorie = categorie::count();
         $band = band::count();
         $song = song::count();
-        return view('admin.admin', compact('users','artists','categorie','band','song'));
+        $users = User::where('role', 0)->get();
+        return view('admin.admin', compact('users','user','artists','categorie','band','song'));
     }
 }

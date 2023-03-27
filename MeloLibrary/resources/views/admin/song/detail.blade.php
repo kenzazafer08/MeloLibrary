@@ -11,7 +11,8 @@
     <div class="flex items-center jusify-between">
     <div>
         <img class=" w-32 rounded-full" src="{{asset('uploads')}}/{{$song->Image}}"/>
-    <h5 class="py-4 font-bold text-red-700 text-lg text-center">{{$song->Titre}}</h5>
+    <h5 class="py-4 font-bold text-red-700 text-lg text-center">{{$song->Titre}} </h5>
+      
     </div>
     </div>
     @if($artists)<div>
@@ -155,6 +156,12 @@
         <h1 class="font-extrabold text-2xl">Lyrics</h1>
         <p class="py-4 text-sm text-justify">{{$song->lyrics}}</p>
         <p class="font-light text-lg text-gray-600">{{$song->date}}</p>
+        <p class="flex items-center">  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="red" class="text-red-700" xmlns="http://www.w3.org/2000/svg">
+            <g id="Interface / Heart_01">
+            <path id="Vector" d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+        </svg>
+    {{$count_likes}}</p>
     </div>
 
 </div>

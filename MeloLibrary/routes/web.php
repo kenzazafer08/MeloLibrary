@@ -28,6 +28,7 @@ Route::get('/details/{id}',[App\Http\Controllers\artistcontroller::class, 'show'
 Route::get('/showband',[App\Http\Controllers\bandcontroller::class, 'index'])->middleware('auth');
 Route::get('/detailband/{id}',[App\Http\Controllers\bandcontroller::class, 'show'])->name('band')->middleware('auth');
 Route::get('/songsband/{id}',[App\Http\Controllers\bandcontroller::class, 'showsongs'])->name('show.bandsongs')->middleware('auth');
+Route::get('/songLike/{id}',[App\Http\Controllers\likescontroller::class, 'store'])->name('like.song')->middleware('auth');
 
 Route::get('/Biblio', function () {
     return view('biblio');

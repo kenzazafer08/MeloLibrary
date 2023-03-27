@@ -15,13 +15,23 @@
             </svg>
             <audio class="hidden" id="{{$song->id}}" src="{{ asset('uploads') }}/{{$song->audio}}"></audio>
         </button>
-        <a href="">
+        @if($like == 1)
+            <a href="{{route('like.song',$song->id)}}">
+                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="red" class="text-red-700" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Interface / Heart_01">
+                    <path id="Vector" d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+            </a> {{$count_like}}
+        @else
+        <a href="{{route('like.song',$song->id)}}">
             <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" class="text-red-700" xmlns="http://www.w3.org/2000/svg">
                 <g id="Interface / Heart_01">
                 <path id="Vector" d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
             </svg>
-        </a>
+        </a>{{$count_like}}
+        @endif
     </div>
     </div>
     </div>
