@@ -102,7 +102,47 @@
     </div>
 
 </div>
-<div class="mt-8 flex justify-around items-center">     
+<div class="mt-8 "> 
+    <p class="font-bold text-2xl">Comments</p>    
+
+    <form action="{{route('store.comment',$song->id)}}">
+        <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                <label for="comment" class="sr-only">Your comment</label>
+                <textarea name="comment" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required></textarea>
+            </div>
+            <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 hover:bg-red-800">
+                    Post comment
+                </button>
+                <div class="flex pl-0 space-x-1 sm:pl-2">
+                </div>
+            </div>
+        </div>
+     </form>  
+     <div class="mb-10">
+     @foreach ($comments as $item) 
+     @if($item->user->id == (Auth::user()->id))
+     <div class="mb-2 px-4 flex justify-around items-center  border border-1 border-red-500 shadow-sm rounded-full"> 
+           
+        <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
+        <p class="w-[70%] text-justify">{{$item->body}}</p> 
+        <span class="w-[20%] text-gray-500 text-sm">{{$item->created_at}}</span>
+        <form class="pt-4 px-4" action="{{route('comment.remove',$item->id)}}" method="POST" style="display: inline-block">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-red-800">Remove</button>
+        </form>
+     </div>
+     @else
+     <div class="mb-2 p-4 flex justify-around items-center  border border-1 border-red-500 shadow-sm rounded-full"> 
+        <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
+        <p class="w-[70%] text-justify">{{$item->body}}</p> 
+        <span class="w-[20%] text-gray-500 text-sm">{{$item->created_at}}</span>
+     </div>
+     @endif
+     @endforeach
+     </div>
 </div>
 </div>
 @endsection

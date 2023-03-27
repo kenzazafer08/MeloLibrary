@@ -11,6 +11,7 @@ use App\Models\categorie;
 use App\Models\likes;
 use App\Models\band;
 use App\artist;
+use App\Models\comments;
 use App\Models\playlist;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,6 +86,7 @@ class HomeController extends Controller
         } else {
             $playlist = 0;
         }
-        return view('detail', compact('playlist','song','artists','bands','categories','like','count_like'));
+        $comments = $song->comments;
+        return view('detail', compact('comments','playlist','song','artists','bands','categories','like','count_like'));
     }
 }

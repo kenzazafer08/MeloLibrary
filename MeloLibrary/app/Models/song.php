@@ -32,4 +32,8 @@ class song extends Model
     {
         return $this->hasMany(playlists::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(comments::class);
+    }
 }

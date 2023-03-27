@@ -165,7 +165,22 @@
     </div>
 
 </div>
-<div class="mt-8 flex justify-around items-center">     
+<div class="mt-8 "> 
+    <p class="font-bold text-2xl">Comments</p>
+<div class="mb-10">
+    @foreach ($comments as $item) 
+    <div class="mb-2 px-4 flex justify-around items-center  border border-1 border-red-500 shadow-sm rounded-full"> 
+       <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
+       <p class="w-[70%] text-justify">{{$item->body}}</p> 
+       <span class="w-[20%] text-gray-500 text-sm">{{$item->created_at}}</span>
+       <form class="mt-4 px-4" action="{{route('comment.remove',$item->id)}}" method="POST" style="display: inline-block">
+           @csrf
+           @method('DELETE')
+           <button type="submit" class=" text-red-800">Remove</button>
+       </form>
+    </div>
+    @endforeach
+    </div>
 </div>
 </div>
 @endsection

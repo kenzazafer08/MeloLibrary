@@ -29,6 +29,8 @@ Route::get('/showband',[App\Http\Controllers\bandcontroller::class, 'index'])->m
 Route::get('/detailband/{id}',[App\Http\Controllers\bandcontroller::class, 'show'])->name('band')->middleware('auth');
 Route::get('/songsband/{id}',[App\Http\Controllers\bandcontroller::class, 'showsongs'])->name('show.bandsongs')->middleware('auth');
 Route::get('/songLike/{id}',[App\Http\Controllers\likescontroller::class, 'store'])->name('like.song')->middleware('auth');
+Route::get('/songComment/{id}',[App\Http\Controllers\commentcontroller::class, 'store'])->name('store.comment')->middleware('auth');
+Route::delete('comment/{id}',[App\Http\Controllers\commentcontroller::class, 'remove'])->name('comment.remove')->middleware('auth');
 
 Route::get('/Biblio', [App\Http\Controllers\playlistcontroller::class, 'index'])->middleware('auth');
 Route::get('/songBiblio/{id}',[App\Http\Controllers\playlistcontroller::class, 'store'])->name('playlist.song')->middleware('auth');

@@ -111,7 +111,8 @@ class songcontroller extends Controller
         $singers= artist::all();
         $groups= band::all();
         $keywords= categorie::all();
-        return view('admin.song.detail', compact('count_likes','song','artists','bands','categories','singers','groups','keywords'));
+        $comments = $song->comments;
+        return view('admin.song.detail', compact('comments','count_likes','song','artists','bands','categories','singers','groups','keywords'));
     }
 
     /**
