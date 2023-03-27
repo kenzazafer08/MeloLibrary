@@ -23,6 +23,11 @@ Route::get('/song/{id}',[App\Http\Controllers\homecontroller::class,'show'])->na
 Route::get('/Search', [App\Http\Controllers\searchcontroller::class, 'index'])->middleware('auth');
 Route::get('/search', [App\Http\Controllers\searchcontroller::class, 'read'])->name('search')->middleware('auth');
 Route::get('/categorie/{id}', [App\Http\Controllers\searchcontroller::class, 'show'])->name('categorie')->middleware('auth');
+Route::get('/showartist',[App\Http\Controllers\artistcontroller::class, 'index'])->middleware('auth');
+Route::get('/details/{id}',[App\Http\Controllers\artistcontroller::class, 'show'])->name('show.artist')->middleware('auth');
+Route::get('/showband',[App\Http\Controllers\bandcontroller::class, 'index'])->middleware('auth');
+Route::get('/detailband/{id}',[App\Http\Controllers\bandcontroller::class, 'show'])->name('band')->middleware('auth');
+Route::get('/songsband/{id}',[App\Http\Controllers\bandcontroller::class, 'showsongs'])->name('show.bandsongs')->middleware('auth');
 
 Route::get('/Biblio', function () {
     return view('biblio');

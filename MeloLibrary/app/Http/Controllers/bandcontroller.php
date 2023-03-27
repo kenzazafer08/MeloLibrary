@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\band;
 use App\artist;
 use App\Models\members;
+use App\Models\bands;
+use Illuminate\Support\Facades\Auth;
 
 class bandcontroller extends Controller
 {
@@ -14,8 +16,13 @@ class bandcontroller extends Controller
      */
     public function index()
     {
+        
         $band = band::all();
+        if(Auth::user()->role == '1'){
         return view('admin.band.band', compact('band'));
+        }else{
+            return view('band', compact('band'));
+        }
     }
 
     /**
@@ -56,6 +63,7 @@ class bandcontroller extends Controller
                 'artist_id' => $artist,
         ]);
         }
+        
         return redirect(route('band.show',$id))->with('success', 'Band has been updated successfully!');
     }
     /**
@@ -71,7 +79,23 @@ class bandcontroller extends Controller
             $artist = artist::find($member->artist_id);
             array_push($artists,$artist);
         }
+        if(Auth::user()->role == '1'){
         return view('admin.band.detail', compact('band','artists','singers'));
+        }else{
+            return view('banddetail', compact('band','artists','singers'));
+        }
+    }
+
+    public function showsongs($id)
+    {
+        $song = array();
+        $singers = bands::where('id_band',$id)->get();
+        foreach($singers as $member){
+            $id =  $member->song_id;
+            $artist = band::find($id);
+            array_push($song,$artist);
+        }
+        return view('home', compact('song'));
     }
 
     /**
