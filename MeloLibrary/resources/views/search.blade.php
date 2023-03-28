@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </form>          
-            <div class="grid grid-cols-4 gap-4 my-10 px-10 w-full justify-around "> 
+            <div class="grid sm:grid-cols-4 grid-cols-1 place-items-center gap-4 my-10 px-10 w-full justify-around "> 
                 @foreach ($categorie as $item)
                <a href="{{route('categorie',$item->id)}}"><div class="flex justify-center items-center mb-4 bg-red-800 h-32 w-48 border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
                     <h5 class="text-center p-4 text-xl font-semibold tracking-tight text-white">{{$item->name}}</h5>

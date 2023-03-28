@@ -6,8 +6,8 @@
             {{ session('success') }}
         </div> </span>
         @endif
-<div class="flex justify-between">
-    <div class="flex flex-col items-center w-1/2">
+<div class="flex sm:flex-row flex-col items-center w-full justify-between">
+    <div class="flex flex-col items-center sm:w-1/2 w-full">
     <div class="flex items-center jusify-between">
     <div>
         <img class=" w-32 rounded-full" src="{{asset('uploads')}}/{{$song->Image}}"/>
@@ -152,7 +152,7 @@
     <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Add categorie</button>    
 </form>
     </div>
-    <div class="flex flex-col w-1/2">
+    <div class="flex flex-col sm:w-1/2 w-full">
         <h1 class="font-extrabold text-2xl">Lyrics</h1>
         <p class="py-4 text-sm text-justify">{{$song->lyrics}}</p>
         <p class="font-light text-lg text-gray-600">{{$song->date}}</p>
@@ -169,14 +169,14 @@
     <p class="font-bold text-2xl">Comments</p>
 <div class="mb-10">
     @foreach ($comments as $item) 
+    <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
     <div class="mb-2 px-4 flex justify-around items-center  border border-1 border-red-500 shadow-sm rounded-full"> 
-       <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
-       <p class="w-[70%] text-justify">{{$item->body}}</p> 
-       <span class="w-[20%] text-gray-500 text-sm">{{$item->created_at}}</span>
+       
+       <p class="w-[80%] text-sm text-justify">{{$item->body}}</p> 
        <form class="mt-4 px-4" action="{{route('comment.remove',$item->id)}}" method="POST" style="display: inline-block">
            @csrf
            @method('DELETE')
-           <button type="submit" class=" text-red-800">Remove</button>
+           <button type="submit" class=" text-red-800">Archive</button>
        </form>
     </div>
     @endforeach

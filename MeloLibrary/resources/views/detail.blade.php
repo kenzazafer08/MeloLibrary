@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="p-4 sm:ml-64 mt-20">
-<div class="flex justify-between items-center">
-    <div class="flex flex-col items-center w-1/3">
+<div class="flex sm:flex-row flex-col justify-between items-center">
+    <div class="flex flex-col items-center sm:w-1/3 w-full">
     <div class="flex items-center jusify-between">
     <div>
     <div class="flex flex-col items-center">
@@ -86,7 +86,7 @@
     @endif
     </div>
 </div>
-    <div class="flex flex-col w-2/3 p-4">
+    <div class="flex flex-col sm:w-2/3 w-full p-4">
         <h1 class="font-extrabold text-2xl">Lyrics</h1>
         <p class="py-4 text-sm text-justify">{{$song->lyrics}}</p>
         <p class="font-light text-lg text-gray-600">{{$song->date}}</p>
@@ -114,11 +114,11 @@
      <div class="mb-10">
      @foreach ($comments as $item) 
      @if($item->user->id == (Auth::user()->id))
+     <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
      <div class="mb-2 px-4 flex justify-around items-center  border border-1 border-red-500 shadow-sm rounded-full"> 
            
-        <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
-        <p class="w-[70%] text-justify">{{$item->body}}</p> 
-        <span class="w-[20%] text-gray-500 text-sm">{{$item->created_at}}</span>
+        
+        <p class="w-[80%] text-sm text-justify">{{$item->body}}</p> 
         <form class="pt-4 px-4" action="{{route('comment.remove',$item->id)}}" method="POST" style="display: inline-block">
             @csrf
             @method('DELETE')
@@ -126,10 +126,10 @@
         </form>
      </div>
      @else
+     <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
      <div class="mb-2 p-4 flex justify-around items-center  border border-1 border-red-500 shadow-sm rounded-full"> 
-        <p class="w-[10%] font-bold text-red-700">{{$item->user->name}}</p>
-        <p class="w-[70%] text-justify">{{$item->body}}</p> 
-        <span class="w-[20%] text-gray-500 text-sm">{{$item->created_at}}</span>
+        
+        <p class="w-[80%] text-sm text-justify">{{$item->body}}</p> 
      </div>
      @endif
      @endforeach

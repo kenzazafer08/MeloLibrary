@@ -1,7 +1,7 @@
 @extends('layouts.Melo')
 @section('head')
 <div class="bg-black flex justify-center items-center w-full h-screen ">
-    <div class="w-1/3 h-[80%] bg-white shadow-sm shadow-red-800 rounded-lg border border-red-800">
+    <div class="sm:w-1/3 w-2/3 h-[80%] bg-white shadow-sm shadow-red-800 rounded-lg border border-red-800">
         <div class="w-full h-full flex justify-center items-center">
 
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">

@@ -31,10 +31,20 @@ class song extends Model
     }
     public function playlists()
     {
-        return $this->hasMany(playlists::class);
+        return $this->hasMany(playlist::class);
     }
     public function comments()
     {
         return $this->hasMany(comments::class);
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($song) {
+            $song->likes()->delete();
+            $song->comments()->delete();
+            $song->playlists()->delete();
+        });
     }
 }

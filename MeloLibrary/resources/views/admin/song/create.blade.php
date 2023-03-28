@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="mb-6">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Artists</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bands</label>
             <div class="flex w-full mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 <select
                   id="select-band"
@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="mb-6">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Artists</label>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
                 <div class="flex w-full mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     <select
                       id="select-categorie"

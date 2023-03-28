@@ -2,7 +2,7 @@
 @section('content')
 <div class="p-4 sm:ml-64 mt-20">
     <p class="font-bold text-xl px-4">New songs</p>
-    <div class="grid grid-cols-3 gap-4 my-10 px-10 w-full justify-around"> 
+    <div class="grid sm:grid-cols-3 place-items-center grid-cols-1 gap-4 my-10 px-10 w-full justify-around"> 
       @foreach ($song as $song)
       <div class="w-56 h-64 bg-white border border-gray-200 rounded-lg shadow ">
         <div class="relative h-2/3">

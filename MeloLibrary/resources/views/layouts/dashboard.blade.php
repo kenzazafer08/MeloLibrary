@@ -13,7 +13,7 @@
                    </button>
                   <a href="https://flowbite.com" class="flex ml-2 md:mr-24">
                     <img src="{{ asset('images/MeloLibrary.png') }}" class="h-8 mr-3" alt="MeloLibrary Logo" />
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">MeloLibrary Admin</span>
+                    <span class="hidden sm:self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">MeloLibrary Admin</span>
                   </a>
                 </div>
                 <div class="flex items-center">

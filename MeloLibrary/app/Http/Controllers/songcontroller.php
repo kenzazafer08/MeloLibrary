@@ -144,9 +144,6 @@ class songcontroller extends Controller
             $song->categories()->detach();
             $song->singers()->detach();
             $song->band()->detach();
-            $song->likes()->detach();
-            $song->comments()->detach();
-            $song->playlist()->detach();
             $song->delete();
             return redirect('/song')->with('success', 'Song has been deleted successfully!');
     }
