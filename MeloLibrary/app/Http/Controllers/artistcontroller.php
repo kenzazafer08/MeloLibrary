@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\artist;;
-use App\country;
+use App\Models\country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\singers;

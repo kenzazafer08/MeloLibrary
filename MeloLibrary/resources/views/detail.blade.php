@@ -23,13 +23,13 @@
                 </svg>
             </a> </p>
         @else
-        <a href="{{route('like.song',$song->id)}}">
+        <p class="flex justify-center items-center">{{$count_like}}<a href="{{route('like.song',$song->id)}}">
             <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" class="text-red-700" xmlns="http://www.w3.org/2000/svg">
                 <g id="Interface / Heart_01">
                 <path id="Vector" d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
             </svg>
-        </a>{{$count_like}}
+        </a></p>
         @endif
         @if($playlist == 1)
         <a href="{{route('playlist.song',$song->id)}}">
@@ -46,7 +46,7 @@
     </div>
     </div>
     </div>
-    <div class="flex flex-wrap justify-center">
+    <div class="flex flex-wrap gap-4 justify-center">
         <div>
         <h1 class="font-extrabold text-2xl text-center">Artists & bands</h1>
         <div class="flex flex-wrap">
@@ -86,7 +86,7 @@
     @endif
     </div>
 </div>
-    <div class="flex flex-col w-2/3">
+    <div class="flex flex-col w-2/3 p-4">
         <h1 class="font-extrabold text-2xl">Lyrics</h1>
         <p class="py-4 text-sm text-justify">{{$song->lyrics}}</p>
         <p class="font-light text-lg text-gray-600">{{$song->date}}</p>

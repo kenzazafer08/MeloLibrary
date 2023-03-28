@@ -14,9 +14,10 @@ use Illuminate\Http\Request;
 
 class songcontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+
+    }
     public function index()
     {
         $song = song::all();
@@ -67,13 +68,17 @@ class songcontroller extends Controller
             ]);
         }
       }
-        $categories = $request->input('categorie');
-            foreach($categories as $categorie){
-                $songcat = categories::create( [
-                    'song_id' => $song->id,
-                    'categorie_id' => $categorie,
-                ]);
-        }
+      
+      $categories = $request->input('categorie');
+      if($categories){
+        foreach($categories as $categorie){
+            $songcat = categories::create( [
+                'song_id' => $song->id,
+                'categorie_id' => $categorie,
+            ]);
+    }
+      }
+            
         return redirect('/song/')->with('success', 'Song has been created successfully!');
     
     }
@@ -88,9 +93,7 @@ class songcontroller extends Controller
         $artists = $song->singers;
         $bands = $song->band_song;
         $categories = $song->categories;
-        $count_likes = likes::where([
-            'song_id' => $id
-        ])->count();
+        $count_likes = $song->likes->count();
         $singers= artist::all();
         $groups= band::all();
         $keywords= categorie::all();
@@ -141,6 +144,9 @@ class songcontroller extends Controller
             $song->categories()->detach();
             $song->singers()->detach();
             $song->band()->detach();
+            $song->likes()->detach();
+            $song->comments()->detach();
+            $song->playlist()->detach();
             $song->delete();
             return redirect('/song')->with('success', 'Song has been deleted successfully!');
     }

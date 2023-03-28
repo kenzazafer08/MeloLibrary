@@ -11,18 +11,18 @@ class playlistcontroller extends Controller
 {
     public function index()
     {
-        echo 'test';
-        $song = array();
         $id_user = Auth::user()->id;
-        $existing_like = playlist::where([
-            'user_id' => $id_user
-        ])->get();
-        if($existing_like){
-            foreach($existing_like as $test){
-                $id =  $test->song_id;
-                $artist = song::find($id);
-                array_push($song,$artist);
-            }
+        $user = Auth::user();
+        $song = $user->playlist;
+        $i = 0;
+        if($song){
+            foreach($song  as $like){
+                if($like->song){
+                   $i++;
+                }
+            } 
+        }
+        if($i > 0){
             return view('biblio', compact('song'));
         }
         else return redirect('home');
@@ -31,32 +31,35 @@ class playlistcontroller extends Controller
 {
     $id_song = $id;
     $id_user = Auth::user()->id;
-    $existing_playlist = playlist::where([
+    $existing_like = playlist::where([
         'song_id' => $id_song,
         'user_id' => $id_user
     ])->first();
 
-    if ($existing_playlist) {
+    if ($existing_like) {
+        // User already liked the song, so delete the like
         playlist::where([
             'song_id' => $id_song,
             'user_id' => $id_user
         ])->delete();
     } else {
+        // User has not liked the song, so add the like
         playlist::create([
             'song_id' => $id_song,
             'user_id' => $id_user
         ]);
     }
-
     return redirect(route('song', $id));
 }
 public function remove(string $id){
     $id_song = $id;
-    $id_user = Auth::user()->id;
-    playlist::where([
-        'song_id' => $id_song,
-        'user_id' => $id_user
-    ])->delete();
+    $user = Auth::user();
+    $existing_playlist = $user->playlist;
+    foreach($existing_playlist as $l){
+        if ($l->song->id == $id_song) {
+            $l->song->delete();
+        }
+    }
     return redirect('/Biblio');
 }
 }

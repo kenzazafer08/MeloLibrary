@@ -24,7 +24,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
     }
 
     /**
@@ -40,35 +39,35 @@ class HomeController extends Controller
     public function show(string $id)
     {
         $id_user = Auth::user()->id;
+        $user =  Auth::user();
         $song = song::find($id);
-        $existing_like = likes::where([
-            'song_id' => $id,
-            'user_id' => $id_user
-        ])->first();
-        $count_like = likes::where([
-            'song_id' => $id
-        ])->count();
-        if ($existing_like) {
-            // User already liked the song, so delete the like
-            $like = 1;
-        } else {
-            // User has not liked the song, so add the like
+        if($song){
+            $existing_like = $user->likes;
+            $count_like = $song->likes->count();
             $like = 0;
-        }
-        $existing_playlist = playlist::where([
-            'song_id' => $id,
-            'user_id' => $id_user
-        ])->first();
-    
-        if ($existing_playlist) {
-           $playlist = 1;
-        } else {
+            if(isset($existing_like)){
+                foreach($existing_like as $l){
+                    if ($l->song->id == $song->id) {
+                        $like = 1;
+                    } 
+                }
+            }
+            $existing_playlist = $user->playlist;
             $playlist = 0;
+            if(isset($existing_playlist)){
+                foreach($existing_playlist as $l){
+                    if ($l->song->id == $song->id) {
+                        $playlist = 1;
+                    }
+            }
+             
+            }
+            $comments = $song->comments;
+            $artists = $song->singers;
+            $bands = $song->band;
+            $categories = $song->categories;
+            return view('detail', compact('comments','playlist','song','artists','bands','categories','like','count_like'));
         }
-        $comments = $song->comments;
-        $artists = $song->singers;
-        $bands = $song->band;
-        $categories = $song->categories;
-        return view('detail', compact('comments','playlist','song','artists','bands','categories','like','count_like'));
+        else redirect('home');
     }
 }
