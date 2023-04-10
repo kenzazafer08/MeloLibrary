@@ -2,6 +2,8 @@
 
 <p>MeloLibrary is an online music library application that allows users to search and listen to music, add tracks to their playlists, and leave comments and ratings. Admin users have the ability to add, archive, and modify music tracks, as well as manage user comments.</P>
 
+<img src="Capture.PNG"/>
+
 <h2>Features</h2>
 <ul>
   <li>User authentication system with two roles (client and admin)</li>
